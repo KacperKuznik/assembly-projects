@@ -38,8 +38,32 @@ section .text
         jl read
 
     reading_ended:
-        sub rsp, 8
+        sub     rsp, 8
+        mov     r8, rcx
+        mov     rdx, 0
+    outer_loop:
+        cmp     rdx, r8
+        jg     print
+        lea     rsi, [array]
+        mov     rcx, 1
+        add     rdx, 1
+    inner_loop:
+        mov eax, [rsi]
+        mov ebx, [rsi+4]
+        cmp eax, ebx
+        jle no_swap
+        mov dword [rsi+4], eax
+        mov dword [rsi], ebx
+    no_swap:
+        mov     rbx, 0
+        add     rsi, 4
+        add     rcx, 1
+        cmp     rcx, r8
+        jl      inner_loop
+        jmp     outer_loop
     print:
+        mov     rcx, r8
+    print_loop:
         lea     rax, [array]
         add     rax, rbx
         mov     rsi, [rax]
@@ -53,7 +77,7 @@ section .text
 
         sub     rcx, 1
         cmp     rcx, 0
-        jg      print
+        jg      print_loop
 
     end:
         add     rsp, 8
