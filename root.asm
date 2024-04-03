@@ -24,6 +24,7 @@ section .text
     loop:
         cmp rcx, endValue
         jg end
+        movq xmm0, rcx
         ; add rooting and printing the output
         add rcx, 1
     end:
