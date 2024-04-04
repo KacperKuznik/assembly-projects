@@ -13,7 +13,7 @@ section .data
     align 16
     step   dq 0.125
     cur_step dq 0.0
-    end_val     dq 5.2
+    end_val     dq 0.0
 section .bss
 
 section .text
