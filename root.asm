@@ -34,11 +34,22 @@ section .text
         je      end
         sqrtsd  xmm0, xmm1
 
+        sub rsp, 16
+        movsd [rsp], xmm1
+        sub rsp, 16
+        movsd [rsp], xmm4
+
         lea     rdi, [format_out]
         mov     al, 1
         call    printf wrt ..plt
+
+        movsd xmm1, [rsp]
+        add rsp, 16
+        movsd xmm4, [rsp]
+        add rsp, 16
+
         ; adding 0.125 to the xmm1
-        addsd   xmm1, 0.125
+        addpd   xmm1, [step]
         jmp     loop
 
     end:
