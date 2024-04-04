@@ -35,7 +35,7 @@ section .text
 
         sqrtsd  xmm1, xmm0
         lea     rdi, [format_out]
-        mov     al, 1
+        mov     al, 2
         call    printf wrt ..plt
         movlpd    xmm0, [cur_step]
         addpd    xmm0, [step]
