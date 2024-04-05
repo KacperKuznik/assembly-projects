@@ -38,7 +38,7 @@ section .text
         mov     al, 2
         call    printf wrt ..plt
         movlpd    xmm0, [cur_step]
-        addpd    xmm0, [step]
+        addsd    xmm0, [step]
         movq    [cur_step] , xmm0
         
         jmp square
