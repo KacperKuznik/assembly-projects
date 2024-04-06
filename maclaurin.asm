@@ -30,19 +30,19 @@ section .text
         mov     al, 0
         call    scanf wrt ..plt
 
-        mov       rbx, [k]         ;max iterator value
+        mov       rbx, [k]      ;max iterator value
         mov       rcx, 1
-        movlpd    xmm0, [one]        ;output
-        movlpd    xmm1, [one]          ;iterator
-        movlpd    xmm2, [one]         ;numerator
-        movlpd    xmm3, [one]         ;denominator
+        movlpd    xmm0, [one]   ;output
+        movlpd    xmm1, [one]   ;iterator
+        movlpd    xmm2, [one]   ;numerator
+        movlpd    xmm3, [one]   ;denominator
 
     loop:
         cmp rcx, rbx
         jg end
-        mulsd   xmm2, [x]       ;xmm4 is iterator but in xmm register
+        mulsd   xmm2, [x]
         mulsd   xmm3, xmm1
-        movq    xmm4, xmm2      ;xmm4 is division of numerator and denominator
+        movq    xmm4, xmm2
         divsd   xmm4, xmm3
         addsd   xmm0, xmm4
         addsd   xmm1, [one]
