@@ -34,7 +34,7 @@ section .text
         jne     reading_ended
         
         add rcx, 1
-        cmp rcx, 10
+        cmp rcx, 100
         jl read
 
     reading_ended:
@@ -46,6 +46,8 @@ section .text
         jg     print
         lea     rsi, [array]
         mov     rcx, 1
+        mov     r9, r8
+        sub     r9, rdx
         add     rdx, 1
     inner_loop:
         mov eax, [rsi]
@@ -58,7 +60,7 @@ section .text
         mov     rbx, 0
         add     rsi, 4
         add     rcx, 1
-        cmp     rcx, r8
+        cmp     rcx, r9
         jl      inner_loop
         jmp     outer_loop
     print:
